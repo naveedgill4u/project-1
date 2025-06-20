@@ -2,5 +2,39 @@
 title: "Quarto 1"
 Author: Naveed Ahmad
 format: html
+execute: 
+  echo: false
 ---
 
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+library(palmerpenguins)
+```
+
+
+```{r}
+# Basic data check (optional)
+glimpse(penguins)
+
+# Create a beautiful scatter plot
+ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g,
+                            color = species, shape = sex)) +
+  geom_point(size = 3, alpha = 0.8, na.rm = TRUE) +
+  scale_color_brewer(palette = "Set2") +
+  labs(
+    title = "Penguin Body Mass vs Flipper Length",
+    subtitle = "Species and Sex Differentiation",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    color = "Species",
+    shape = "Sex",
+    caption = "Data: palmerpenguins"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18),
+    plot.subtitle = element_text(size = 14),
+    legend.position = "right"
+  )
+```
